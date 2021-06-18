@@ -7,13 +7,16 @@ This tool allows you to export audio files from Genshin Impact game data into di
 
 ### How to use
 
-The audio files are saved as `.pck` files within the Genshin Impact game data directory.
-Example audio files location: `C:\Program Files\Genshin Impact\Genshin Impact Game\GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows`
+The audio files are saved as `.pck` data files within the Genshin Impact game data directory.
+Example audio files location:
+```
+C:\Program Files\Genshin Impact\Genshin Impact Game\GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows
+```
 
-1. Copy desired `Music.pck` files to an easy to find location e.g. `My Documents`. 
+1. Copy desired `.pck` data files to an easy to find location e.g. `My Documents`. 
 1. Open the program and select the input directory with your `.pck` data files.
 2. Select an output directory to save exported audio files to.
-3. Choose your desired audio formats to export to.
+3. Choose your preferred audio formats to export to.
 4. Click `Export` and wait for the program to finish exporting the audio files.
 
 
@@ -23,6 +26,6 @@ Example audio files location: `C:\Program Files\Genshin Impact\Genshin Impact Ga
 
 ### Notes
 
-When exporting has started, the program will create a directory named `libs` and `processing`. Do not remove or modify the contents of these directories as they are needed during the export process. The directories will be deleted automatically when the program is closed.
+When exporting has started, the program will create two directories named `libs` and `processing`. Do not remove or modify the contents of these directories as they are needed during the export process. They will be deleted automatically when the program is closed.
 
 All previously exported audio files in the output directory *will be overwritten* when the same audio files are being exported again.
