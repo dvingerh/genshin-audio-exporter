@@ -113,6 +113,8 @@ namespace genshin_audio_exporter
                 ExportButton.Enabled = canExport;
                 AppVariables.UpdateProcessingFolder();
             }
+            else
+                ExportButton.Enabled = false;
         }
 
         private async void ExportOrAbort(object sender, EventArgs e)
@@ -156,7 +158,7 @@ namespace genshin_audio_exporter
 
                 if (!isAborted)
                 {
-                    WriteStatus("Exporting PCK  =>  WEM", prefix:false);
+                    WriteStatus("Exporting PCK  =>  WEM  (Required)", prefix:false);
                     WriteStatus("");
                     await Task.Run(() =>
                     {
@@ -188,7 +190,7 @@ namespace genshin_audio_exporter
                 if (!isAborted)
                 {
                     WriteStatus("");
-                    WriteStatus("Exporting WEM  =>  WAV", prefix: false);
+                    WriteStatus("Exporting WEM  =>  WAV  (Required)", prefix: false);
                     WriteStatus("");
                     index = 0;
                     await Task.Run(() =>
@@ -224,6 +226,8 @@ namespace genshin_audio_exporter
                                 {
                                     WriteStatus($"{Path.GetFileName(wemFile)}  =>  {Path.GetFileNameWithoutExtension(wemFile)}.wav");
                                 }));
+                                if (FormatWavCheckBox.Checked)
+                                    exportedAudioFiles += 1;
                                 index += 1;
                                 overallIndex += 1;
                                 progress.Report(index);
@@ -318,10 +322,11 @@ namespace genshin_audio_exporter
             isBusy = false;
             WriteStatus("");
             if (!aborted)
-                WriteStatus($"{exportedAudioFiles} audio files have been exported ({AppVariables.WavFiles.Count} unique)", prefix: false);
+                WriteStatus($"{exportedAudioFiles} audio files have been exported ({AppVariables.WavFiles.Count} unique sounds)", prefix: false);
             else
                 WriteStatus($"Task has been aborted, {exportedAudioFiles} audio files were exported", prefix: false);
             WriteStatus("");
+            exportedAudioFiles = 0;
         }
 
         private static void ClearTempDirectories()

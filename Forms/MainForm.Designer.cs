@@ -101,8 +101,6 @@ namespace genshin_audio_exporter
             // 
             this.FormatMp3CheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.FormatMp3CheckBox.AutoSize = true;
-            this.FormatMp3CheckBox.Checked = true;
-            this.FormatMp3CheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FormatMp3CheckBox.Location = new System.Drawing.Point(155, 79);
             this.FormatMp3CheckBox.Name = "FormatMp3CheckBox";
             this.FormatMp3CheckBox.Size = new System.Drawing.Size(39, 23);
