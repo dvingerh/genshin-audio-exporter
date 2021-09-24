@@ -226,8 +226,6 @@ namespace genshin_audio_exporter
                                 {
                                     WriteStatus($"{Path.GetFileName(wemFile)}  =>  {Path.GetFileNameWithoutExtension(wemFile)}.wav");
                                 }));
-                                if (FormatWavCheckBox.Checked)
-                                    exportedAudioFiles += 1;
                                 index += 1;
                                 overallIndex += 1;
                                 progress.Report(index);
@@ -268,7 +266,7 @@ namespace genshin_audio_exporter
 
             WriteStatus("");
             if (format == "wav")
-                WriteStatus("Copying WAV Files", prefix: false);
+                WriteStatus("Copying WAV Files to destination directory", prefix: false);
             else
                 WriteStatus($"Exporting WAV  =>  {format.ToUpper()}", prefix: false);
             WriteStatus("");
