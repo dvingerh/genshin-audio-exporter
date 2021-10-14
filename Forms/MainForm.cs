@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -34,18 +35,17 @@ namespace genshin_audio_exporter
 
         private void BrowsePckFolder(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog
-            {
-                ShowNewFolderButton = false
+            CommonOpenFileDialog cofd = new CommonOpenFileDialog {
+                IsFolderPicker = true
             };
-            DialogResult fbdResult = fbd.ShowDialog();
-            if (fbdResult == DialogResult.OK)
+            CommonFileDialogResult fbdResult = cofd.ShowDialog();
+            if (fbdResult == CommonFileDialogResult.Ok)
             {
-                int PckFileCount = Directory.GetFiles(fbd.SelectedPath, "*.pck").Length;
-                if (PckFileCount>0)
+                int PckFileCount = Directory.GetFiles(cofd.FileName, "*.pck").Length;
+                if (PckFileCount > 0)
                 {
-                    AppVariables.PckFileDir = fbd.SelectedPath;
-                    PckFileDirTextBox.Text = fbd.SelectedPath;
+                    AppVariables.PckFileDir = cofd.FileName;
+                    PckFileDirTextBox.Text = cofd.FileName;
                 }
                 else
                 {
@@ -58,15 +58,15 @@ namespace genshin_audio_exporter
 
         private void BrowseOutputFolder(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog
+            CommonOpenFileDialog fbd = new CommonOpenFileDialog
             {
-                ShowNewFolderButton = true
+                IsFolderPicker = true
             };
-            DialogResult fbdResult = fbd.ShowDialog();
-            if (fbdResult == DialogResult.OK)
+            CommonFileDialogResult fbdResult = fbd.ShowDialog();
+            if (fbdResult == CommonFileDialogResult.Ok)
             {
-                AppVariables.OutputDir = fbd.SelectedPath;
-                OutputDirTextBox.Text = fbd.SelectedPath;
+                AppVariables.OutputDir = fbd.FileName;
+                OutputDirTextBox.Text = fbd.FileName;
 
             }
             UpdateCanExportStatus();
