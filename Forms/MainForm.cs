@@ -43,7 +43,7 @@ namespace genshin_audio_exporter
             {
                 AppVariables.PckFiles.Clear();
                 AppVariables.PckFiles = ofd.FileNames.ToList();
-                PckFilesInfo.Text = $"Selected {AppVariables.PckFiles.Count} PCK file{(AppVariables.PckFiles.Count > 1 ? "s" : "")} to extract.";
+                PckFilesInfo.Text = $"Selected {AppVariables.PckFiles.Count} PCK file{(AppVariables.PckFiles.Count > 1 ? "s" : "")} to process.";
             }
             UpdateCanExportStatus();
         }
