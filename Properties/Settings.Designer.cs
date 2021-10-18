@@ -26,18 +26,6 @@ namespace genshin_audio_exporter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string PckFileDirectory {
-            get {
-                return ((string)(this["PckFileDirectory"]));
-            }
-            set {
-                this["PckFileDirectory"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string OutputDirectory {
             get {
                 return ((string)(this["OutputDirectory"]));

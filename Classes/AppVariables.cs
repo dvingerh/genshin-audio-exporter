@@ -6,7 +6,6 @@ namespace genshin_audio_exporter
 {
     public static class AppVariables
     {
-        private static string pckFileDir = "";
         private static string outputDir = "";
         private static string processingDir = "";
         private static string libsDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "libs");
@@ -21,7 +20,6 @@ namespace genshin_audio_exporter
             ProcessingDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "processing");
         }
 
-        public static string PckFileDir { get => pckFileDir; set => pckFileDir = value; }
         public static string OutputDir { get => outputDir; set => outputDir = value; }
         public static string ProcessingDir { get => processingDir; set => processingDir = value; }
         public static string LibsDir { get => libsDir; set => libsDir = value; }

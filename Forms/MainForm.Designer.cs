@@ -40,8 +40,8 @@ namespace genshin_audio_exporter
             this.OutputDirTextBox = new System.Windows.Forms.TextBox();
             this.OutputDirectoryLabel = new System.Windows.Forms.Label();
             this.PckDirectoryBrowseButton = new System.Windows.Forms.Button();
-            this.PckFileDirTextBox = new System.Windows.Forms.TextBox();
-            this.PckDirectoryLabel = new System.Windows.Forms.Label();
+            this.PckFilesInfo = new System.Windows.Forms.TextBox();
+            this.PckFilesLabel = new System.Windows.Forms.Label();
             this.FormatWavCheckBox = new System.Windows.Forms.CheckBox();
             this.StatusGroupBox = new System.Windows.Forms.GroupBox();
             this.StatusTextBox = new System.Windows.Forms.TextBox();
@@ -63,8 +63,8 @@ namespace genshin_audio_exporter
             this.SettingsGroupBox.Controls.Add(this.OutputDirTextBox);
             this.SettingsGroupBox.Controls.Add(this.OutputDirectoryLabel);
             this.SettingsGroupBox.Controls.Add(this.PckDirectoryBrowseButton);
-            this.SettingsGroupBox.Controls.Add(this.PckFileDirTextBox);
-            this.SettingsGroupBox.Controls.Add(this.PckDirectoryLabel);
+            this.SettingsGroupBox.Controls.Add(this.PckFilesInfo);
+            this.SettingsGroupBox.Controls.Add(this.PckFilesLabel);
             this.SettingsGroupBox.Controls.Add(this.FormatWavCheckBox);
             this.SettingsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.SettingsGroupBox.Name = "SettingsGroupBox";
@@ -153,24 +153,26 @@ namespace genshin_audio_exporter
             this.PckDirectoryBrowseButton.TabIndex = 3;
             this.PckDirectoryBrowseButton.Text = "Browse...";
             this.PckDirectoryBrowseButton.UseVisualStyleBackColor = true;
-            this.PckDirectoryBrowseButton.Click += new System.EventHandler(this.BrowsePckFolder);
+            this.PckDirectoryBrowseButton.Click += new System.EventHandler(this.BrowsePckFiles);
             // 
-            // PckFileDirTextBox
+            // PckFilesInfo
             // 
-            this.PckFileDirTextBox.Location = new System.Drawing.Point(108, 21);
-            this.PckFileDirTextBox.Name = "PckFileDirTextBox";
-            this.PckFileDirTextBox.ReadOnly = true;
-            this.PckFileDirTextBox.Size = new System.Drawing.Size(365, 22);
-            this.PckFileDirTextBox.TabIndex = 2;
+            this.PckFilesInfo.Location = new System.Drawing.Point(108, 21);
+            this.PckFilesInfo.Name = "PckFilesInfo";
+            this.PckFilesInfo.ReadOnly = true;
+            this.PckFilesInfo.Size = new System.Drawing.Size(365, 22);
+            this.PckFilesInfo.TabIndex = 2;
+            this.PckFilesInfo.TabStop = false;
+            this.PckFilesInfo.Text = "No PCK files are currently selected.";
             // 
-            // PckDirectoryLabel
+            // PckFilesLabel
             // 
-            this.PckDirectoryLabel.AutoSize = true;
-            this.PckDirectoryLabel.Location = new System.Drawing.Point(6, 26);
-            this.PckDirectoryLabel.Name = "PckDirectoryLabel";
-            this.PckDirectoryLabel.Size = new System.Drawing.Size(96, 13);
-            this.PckDirectoryLabel.TabIndex = 1;
-            this.PckDirectoryLabel.Text = "PCK file directory:";
+            this.PckFilesLabel.AutoSize = true;
+            this.PckFilesLabel.Location = new System.Drawing.Point(6, 26);
+            this.PckFilesLabel.Name = "PckFilesLabel";
+            this.PckFilesLabel.Size = new System.Drawing.Size(98, 13);
+            this.PckFilesLabel.TabIndex = 1;
+            this.PckFilesLabel.Text = "PCK files selected:";
             // 
             // FormatWavCheckBox
             // 
@@ -181,7 +183,7 @@ namespace genshin_audio_exporter
             this.FormatWavCheckBox.Location = new System.Drawing.Point(108, 79);
             this.FormatWavCheckBox.Name = "FormatWavCheckBox";
             this.FormatWavCheckBox.Size = new System.Drawing.Size(41, 23);
-            this.FormatWavCheckBox.TabIndex = 11;
+            this.FormatWavCheckBox.TabIndex = 7;
             this.FormatWavCheckBox.Text = "WAV";
             this.FormatWavCheckBox.UseVisualStyleBackColor = true;
             this.FormatWavCheckBox.CheckedChanged += new System.EventHandler(this.UpdateAudioFormatStatus);
@@ -274,8 +276,8 @@ namespace genshin_audio_exporter
         #endregion
 
         private System.Windows.Forms.GroupBox SettingsGroupBox;
-        private System.Windows.Forms.TextBox PckFileDirTextBox;
-        private System.Windows.Forms.Label PckDirectoryLabel;
+        private System.Windows.Forms.TextBox PckFilesInfo;
+        private System.Windows.Forms.Label PckFilesLabel;
         private System.Windows.Forms.Button PckDirectoryBrowseButton;
         private System.Windows.Forms.Button OutputFolderBrowseButton;
         private System.Windows.Forms.TextBox OutputDirTextBox;

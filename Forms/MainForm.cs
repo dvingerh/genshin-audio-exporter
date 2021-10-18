@@ -16,7 +16,6 @@ namespace genshin_audio_exporter
         public MainForm()
         {
             InitializeComponent();
-            PckFileDirTextBox.Text = Properties.Settings.Default.PckFileDirectory;
             OutputDirTextBox.Text = Properties.Settings.Default.OutputDirectory;
             FormatWavCheckBox.Checked = Properties.Settings.Default.CreateWav;
             FormatMp3CheckBox.Checked = Properties.Settings.Default.CreateMp3;
@@ -32,26 +31,19 @@ namespace genshin_audio_exporter
             StatusTextBox.AppendText($"{((text.Length> 0 && prefix) ? "> " + text : "  " + text)}" + Environment.NewLine);
         }
 
-        private void BrowsePckFolder(object sender, EventArgs e)
+        private void BrowsePckFiles(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog
+            OpenFileDialog ofd = new OpenFileDialog
             {
-                ShowNewFolderButton = false
+                Multiselect = true,
+                Filter = "PCK Files|*.pck"
             };
-            DialogResult fbdResult = fbd.ShowDialog();
+            DialogResult fbdResult = ofd.ShowDialog();
             if (fbdResult == DialogResult.OK)
             {
-                int PckFileCount = Directory.GetFiles(fbd.SelectedPath, "*.pck").Length;
-                if (PckFileCount>0)
-                {
-                    AppVariables.PckFileDir = fbd.SelectedPath;
-                    PckFileDirTextBox.Text = fbd.SelectedPath;
-                }
-                else
-                {
-                    MessageBox.Show("The selected directory does not contain any PCK files. Please choose a different one.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    PckDirectoryBrowseButton.PerformClick();
-                }
+                AppVariables.PckFiles.Clear();
+                AppVariables.PckFiles = ofd.FileNames.ToList();
+                PckFilesInfo.Text = $"Selected {AppVariables.PckFiles.Count} PCK file{(AppVariables.PckFiles.Count > 1 ? "s" : "")} to extract.";
             }
             UpdateCanExportStatus();
         }
@@ -89,7 +81,7 @@ namespace genshin_audio_exporter
 
             if (!AppVariables.CreateWav && !AppVariables.CreateMp3 && !AppVariables.CreateOgg && !AppVariables.CreateFlac)
                 canExport = false;
-            if (!Directory.Exists(PckFileDirTextBox.Text) || !Directory.Exists(OutputDirTextBox.Text))
+            if (AppVariables.PckFiles.Count == 0 || !Directory.Exists(OutputDirTextBox.Text))
                 canExport = false;
             if (canExport)
             {
@@ -97,17 +89,6 @@ namespace genshin_audio_exporter
                 Properties.Settings.Default.CreateMp3 = AppVariables.CreateMp3;
                 Properties.Settings.Default.CreateOgg = AppVariables.CreateOgg;
                 Properties.Settings.Default.CreateFlac = AppVariables.CreateFlac;
-                if (Directory.GetFiles(PckFileDirTextBox.Text).Length>0)
-                {
-                    Properties.Settings.Default.PckFileDirectory = PckFileDirTextBox.Text;
-                    AppVariables.PckFileDir = PckFileDirTextBox.Text;
-                }
-                else
-                {
-                    PckFileDirTextBox.Clear();
-                    canExport = false;
-                }
-
                 AppVariables.OutputDir = OutputDirTextBox.Text;
                 Properties.Settings.Default.OutputDirectory = OutputDirTextBox.Text;
                 ExportButton.Enabled = canExport;
@@ -144,7 +125,6 @@ namespace genshin_audio_exporter
                 CurrentExportProgressBar.Maximum = 0;
                 int index = 0;
                 int overallIndex = 0;
-                AppVariables.PckFiles = Directory.GetFiles(AppVariables.PckFileDir, "*.pck").ToList();
                 Directory.CreateDirectory(AppVariables.ProcessingDir);
                 Directory.CreateDirectory(Path.Combine(AppVariables.ProcessingDir, "wem"));
                 if (AppVariables.CreateWav)
