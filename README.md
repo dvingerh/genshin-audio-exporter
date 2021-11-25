@@ -13,7 +13,7 @@ Example audio files location:
 C:\Program Files\Genshin Impact\Genshin Impact Game\GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows
 ```
 
-1. Open the program and select which  `.pck` data files you would like to extract audi files from.
+1. Open the program and select which  `.pck` data files you would like to extract audio files from.
 2. Select an output directory to save exported audio files to.
 3. Choose your preferred audio formats to export to.
 4. Click `Export` and wait for the program to finish exporting the audio files.
