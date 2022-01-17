@@ -19,7 +19,7 @@ C:\Program Files\Genshin Impact\Genshin Impact Game\GenshinImpact_Data\Streaming
 4. Click `Export` and wait for the program to finish exporting the audio files.
 
 
-### Example
+### Screenshots (may be out of date)
 
 ![Example](example.gif?raw=true "Example")
 
