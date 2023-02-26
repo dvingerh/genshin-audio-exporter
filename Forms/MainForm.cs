@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -9,10 +10,11 @@ namespace genshin_audio_exporter
 {
     public partial class MainForm : Form
     {
-        private bool doUpdateFormatSettings = false;
+        private readonly bool doUpdateFormatSettings = false;
         private bool isBusy = false;
         private bool isAborted = false;
         private int exportedAudioFiles = 0;
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,13 +24,20 @@ namespace genshin_audio_exporter
             FormatOggCheckBox.Checked = Properties.Settings.Default.CreateOgg;
             FormatFlacCheckBox.Checked = Properties.Settings.Default.CreateFlac;
             doUpdateFormatSettings = true;
-            UpdateCanExportStatus();
 
+            if (Environment.GetCommandLineArgs().Length > 1)
+            {
+                string pckArg = Environment.GetCommandLineArgs()[1];
+                AppVariables.PckFiles = new List<string> { pckArg };
+                PckFilesInfo.Text = $"Selected {AppVariables.PckFiles.Count} PCK file{(AppVariables.PckFiles.Count > 1 ? "s" : "")} to process.";
+            }
+
+            UpdateCanExportStatus();
         }
 
         public void WriteStatus(string text, bool prefix = true)
         {
-            StatusTextBox.AppendText($"{((text.Length> 0 && prefix) ? "> " + text : "  " + text)}" + Environment.NewLine);
+            StatusTextBox.AppendText($"{((text.Length > 0 && prefix) ? "> " + text : "  " + text)}" + Environment.NewLine);
         }
 
         private void BrowsePckFiles(object sender, EventArgs e)
@@ -111,7 +120,7 @@ namespace genshin_audio_exporter
                 StatusTextBox.Clear();
                 if (!AppResources.IsUnpacked)
                 {
-                    WriteStatus("Unpacking libraries", prefix:false);
+                    WriteStatus("Unpacking libraries", prefix: false);
                     WriteStatus("");
                     await Task.Run(() =>
                     {
@@ -138,7 +147,7 @@ namespace genshin_audio_exporter
 
                 if (!isAborted)
                 {
-                    WriteStatus("Exporting PCK  =>  WEM  (Required)", prefix:false);
+                    WriteStatus("Exporting PCK  =>  WEM  (Required)", prefix: false);
                     WriteStatus("");
                     await Task.Run(() =>
                     {
@@ -309,15 +318,15 @@ namespace genshin_audio_exporter
 
         private static void ClearTempDirectories()
         {
-            while (Process.GetProcessesByName("quickbms").Length>0)
+            while (Process.GetProcessesByName("quickbms").Length > 0)
                 foreach (var process in Process.GetProcessesByName("quickbms"))
                     process.Kill();
 
-            while (Process.GetProcessesByName("vgmstream-cli").Length>0)
+            while (Process.GetProcessesByName("vgmstream-cli").Length > 0)
                 foreach (var process in Process.GetProcessesByName("vgmstream-cli"))
                     process.Kill();
 
-            while (Process.GetProcessesByName("ffmpeg").Length>0)
+            while (Process.GetProcessesByName("ffmpeg").Length > 0)
                 foreach (var process in Process.GetProcessesByName("ffmpeg"))
                     process.Kill();
 
@@ -345,6 +354,36 @@ namespace genshin_audio_exporter
             catch { }
             Application.DoEvents();
             Environment.Exit(0);
+        }
+
+        private void PckFilesInfo_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] droppedFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
+            List<string> pckFiles = droppedFiles.Where(x => x.EndsWith(".pck")).ToList();
+            if (pckFiles.Count > 0)
+            {
+                AppVariables.PckFiles.Clear();
+                AppVariables.PckFiles.AddRange(pckFiles);
+                PckFilesInfo.Text = $"Selected {AppVariables.PckFiles.Count} PCK file{(AppVariables.PckFiles.Count > 1 ? "s" : "")} to process.";
+                UpdateCanExportStatus();
+            }
+        }
+
+        private void PckFilesInfo_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void PckFilesInfo_Leave(object sender, EventArgs e)
+        {
+            DragDropPCKFilesToolTip.Hide(PckFilesInfo);
+        }
+
+        private void PckFilesInfo_MouseMove(object sender, MouseEventArgs e)
+        {
+            DragDropPCKFilesToolTip.InitialDelay = 0;
+            DragDropPCKFilesToolTip.ShowAlways = true;
+            DragDropPCKFilesToolTip.Show("Browse or drag-and-drop files into this box.", PckFilesInfo);
         }
     }
 }

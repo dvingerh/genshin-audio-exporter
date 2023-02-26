@@ -48,7 +48,7 @@ namespace genshin_audio_exporter
             this.ExportButton = new System.Windows.Forms.Button();
             this.OverallExportProgressBar = new System.Windows.Forms.ProgressBar();
             this.CurrentExportProgressBar = new System.Windows.Forms.ProgressBar();
-            this.ExportProgressToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.DragDropPCKFilesToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SettingsGroupBox.SuspendLayout();
             this.StatusGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -66,9 +66,11 @@ namespace genshin_audio_exporter
             this.SettingsGroupBox.Controls.Add(this.PckFilesInfo);
             this.SettingsGroupBox.Controls.Add(this.PckFilesLabel);
             this.SettingsGroupBox.Controls.Add(this.FormatWavCheckBox);
-            this.SettingsGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.SettingsGroupBox.Location = new System.Drawing.Point(15, 15);
+            this.SettingsGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SettingsGroupBox.Name = "SettingsGroupBox";
-            this.SettingsGroupBox.Size = new System.Drawing.Size(560, 110);
+            this.SettingsGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SettingsGroupBox.Size = new System.Drawing.Size(700, 138);
             this.SettingsGroupBox.TabIndex = 0;
             this.SettingsGroupBox.TabStop = false;
             this.SettingsGroupBox.Text = "Settings";
@@ -77,9 +79,10 @@ namespace genshin_audio_exporter
             // 
             this.FormatFlacCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.FormatFlacCheckBox.AutoSize = true;
-            this.FormatFlacCheckBox.Location = new System.Drawing.Point(248, 79);
+            this.FormatFlacCheckBox.Location = new System.Drawing.Point(310, 99);
+            this.FormatFlacCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FormatFlacCheckBox.Name = "FormatFlacCheckBox";
-            this.FormatFlacCheckBox.Size = new System.Drawing.Size(42, 23);
+            this.FormatFlacCheckBox.Size = new System.Drawing.Size(51, 29);
             this.FormatFlacCheckBox.TabIndex = 10;
             this.FormatFlacCheckBox.Text = "FLAC";
             this.FormatFlacCheckBox.UseVisualStyleBackColor = true;
@@ -89,9 +92,10 @@ namespace genshin_audio_exporter
             // 
             this.FormatOggCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.FormatOggCheckBox.AutoSize = true;
-            this.FormatOggCheckBox.Location = new System.Drawing.Point(200, 79);
+            this.FormatOggCheckBox.Location = new System.Drawing.Point(250, 99);
+            this.FormatOggCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FormatOggCheckBox.Name = "FormatOggCheckBox";
-            this.FormatOggCheckBox.Size = new System.Drawing.Size(42, 23);
+            this.FormatOggCheckBox.Size = new System.Drawing.Size(50, 29);
             this.FormatOggCheckBox.TabIndex = 9;
             this.FormatOggCheckBox.Text = "OGG";
             this.FormatOggCheckBox.UseVisualStyleBackColor = true;
@@ -101,9 +105,10 @@ namespace genshin_audio_exporter
             // 
             this.FormatMp3CheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.FormatMp3CheckBox.AutoSize = true;
-            this.FormatMp3CheckBox.Location = new System.Drawing.Point(155, 79);
+            this.FormatMp3CheckBox.Location = new System.Drawing.Point(194, 99);
+            this.FormatMp3CheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FormatMp3CheckBox.Name = "FormatMp3CheckBox";
-            this.FormatMp3CheckBox.Size = new System.Drawing.Size(39, 23);
+            this.FormatMp3CheckBox.Size = new System.Drawing.Size(48, 29);
             this.FormatMp3CheckBox.TabIndex = 8;
             this.FormatMp3CheckBox.Text = "MP3";
             this.FormatMp3CheckBox.UseVisualStyleBackColor = true;
@@ -112,17 +117,19 @@ namespace genshin_audio_exporter
             // ExportToLabel
             // 
             this.ExportToLabel.AutoSize = true;
-            this.ExportToLabel.Location = new System.Drawing.Point(6, 84);
+            this.ExportToLabel.Location = new System.Drawing.Point(8, 105);
+            this.ExportToLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ExportToLabel.Name = "ExportToLabel";
-            this.ExportToLabel.Size = new System.Drawing.Size(99, 13);
+            this.ExportToLabel.Size = new System.Drawing.Size(119, 19);
             this.ExportToLabel.TabIndex = 7;
             this.ExportToLabel.Text = "Export to formats:";
             // 
             // OutputFolderBrowseButton
             // 
-            this.OutputFolderBrowseButton.Location = new System.Drawing.Point(479, 50);
+            this.OutputFolderBrowseButton.Location = new System.Drawing.Point(599, 62);
+            this.OutputFolderBrowseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OutputFolderBrowseButton.Name = "OutputFolderBrowseButton";
-            this.OutputFolderBrowseButton.Size = new System.Drawing.Size(75, 24);
+            this.OutputFolderBrowseButton.Size = new System.Drawing.Size(94, 30);
             this.OutputFolderBrowseButton.TabIndex = 6;
             this.OutputFolderBrowseButton.Text = "Browse...";
             this.OutputFolderBrowseButton.UseVisualStyleBackColor = true;
@@ -130,26 +137,29 @@ namespace genshin_audio_exporter
             // 
             // OutputDirTextBox
             // 
-            this.OutputDirTextBox.Location = new System.Drawing.Point(108, 51);
+            this.OutputDirTextBox.Location = new System.Drawing.Point(135, 64);
+            this.OutputDirTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OutputDirTextBox.Name = "OutputDirTextBox";
             this.OutputDirTextBox.ReadOnly = true;
-            this.OutputDirTextBox.Size = new System.Drawing.Size(365, 22);
+            this.OutputDirTextBox.Size = new System.Drawing.Size(455, 26);
             this.OutputDirTextBox.TabIndex = 5;
             // 
             // OutputDirectoryLabel
             // 
             this.OutputDirectoryLabel.AutoSize = true;
-            this.OutputDirectoryLabel.Location = new System.Drawing.Point(6, 56);
+            this.OutputDirectoryLabel.Location = new System.Drawing.Point(8, 70);
+            this.OutputDirectoryLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.OutputDirectoryLabel.Name = "OutputDirectoryLabel";
-            this.OutputDirectoryLabel.Size = new System.Drawing.Size(96, 13);
+            this.OutputDirectoryLabel.Size = new System.Drawing.Size(115, 19);
             this.OutputDirectoryLabel.TabIndex = 4;
             this.OutputDirectoryLabel.Text = "Output directory:";
             // 
             // PckDirectoryBrowseButton
             // 
-            this.PckDirectoryBrowseButton.Location = new System.Drawing.Point(479, 20);
+            this.PckDirectoryBrowseButton.Location = new System.Drawing.Point(599, 25);
+            this.PckDirectoryBrowseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PckDirectoryBrowseButton.Name = "PckDirectoryBrowseButton";
-            this.PckDirectoryBrowseButton.Size = new System.Drawing.Size(75, 24);
+            this.PckDirectoryBrowseButton.Size = new System.Drawing.Size(94, 30);
             this.PckDirectoryBrowseButton.TabIndex = 3;
             this.PckDirectoryBrowseButton.Text = "Browse...";
             this.PckDirectoryBrowseButton.UseVisualStyleBackColor = true;
@@ -157,20 +167,27 @@ namespace genshin_audio_exporter
             // 
             // PckFilesInfo
             // 
-            this.PckFilesInfo.Location = new System.Drawing.Point(108, 21);
+            this.PckFilesInfo.AllowDrop = true;
+            this.PckFilesInfo.Location = new System.Drawing.Point(135, 26);
+            this.PckFilesInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PckFilesInfo.Name = "PckFilesInfo";
             this.PckFilesInfo.ReadOnly = true;
-            this.PckFilesInfo.Size = new System.Drawing.Size(365, 22);
+            this.PckFilesInfo.Size = new System.Drawing.Size(455, 26);
             this.PckFilesInfo.TabIndex = 2;
             this.PckFilesInfo.TabStop = false;
             this.PckFilesInfo.Text = "No PCK files are currently selected.";
+            this.PckFilesInfo.DragDrop += new System.Windows.Forms.DragEventHandler(this.PckFilesInfo_DragDrop);
+            this.PckFilesInfo.DragEnter += new System.Windows.Forms.DragEventHandler(this.PckFilesInfo_DragEnter);
+            this.PckFilesInfo.MouseLeave += new System.EventHandler(this.PckFilesInfo_Leave);
+            this.PckFilesInfo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PckFilesInfo_MouseMove);
             // 
             // PckFilesLabel
             // 
             this.PckFilesLabel.AutoSize = true;
-            this.PckFilesLabel.Location = new System.Drawing.Point(6, 26);
+            this.PckFilesLabel.Location = new System.Drawing.Point(8, 32);
+            this.PckFilesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PckFilesLabel.Name = "PckFilesLabel";
-            this.PckFilesLabel.Size = new System.Drawing.Size(98, 13);
+            this.PckFilesLabel.Size = new System.Drawing.Size(117, 19);
             this.PckFilesLabel.TabIndex = 1;
             this.PckFilesLabel.Text = "PCK files selected:";
             // 
@@ -180,9 +197,10 @@ namespace genshin_audio_exporter
             this.FormatWavCheckBox.AutoSize = true;
             this.FormatWavCheckBox.Checked = true;
             this.FormatWavCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FormatWavCheckBox.Location = new System.Drawing.Point(108, 79);
+            this.FormatWavCheckBox.Location = new System.Drawing.Point(135, 99);
+            this.FormatWavCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FormatWavCheckBox.Name = "FormatWavCheckBox";
-            this.FormatWavCheckBox.Size = new System.Drawing.Size(41, 23);
+            this.FormatWavCheckBox.Size = new System.Drawing.Size(48, 29);
             this.FormatWavCheckBox.TabIndex = 7;
             this.FormatWavCheckBox.Text = "WAV";
             this.FormatWavCheckBox.UseVisualStyleBackColor = true;
@@ -191,9 +209,11 @@ namespace genshin_audio_exporter
             // StatusGroupBox
             // 
             this.StatusGroupBox.Controls.Add(this.StatusTextBox);
-            this.StatusGroupBox.Location = new System.Drawing.Point(12, 128);
+            this.StatusGroupBox.Location = new System.Drawing.Point(15, 160);
+            this.StatusGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.StatusGroupBox.Name = "StatusGroupBox";
-            this.StatusGroupBox.Size = new System.Drawing.Size(560, 175);
+            this.StatusGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StatusGroupBox.Size = new System.Drawing.Size(700, 219);
             this.StatusGroupBox.TabIndex = 1;
             this.StatusGroupBox.TabStop = false;
             this.StatusGroupBox.Text = "Status";
@@ -201,20 +221,22 @@ namespace genshin_audio_exporter
             // StatusTextBox
             // 
             this.StatusTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusTextBox.Location = new System.Drawing.Point(6, 21);
+            this.StatusTextBox.Location = new System.Drawing.Point(8, 26);
+            this.StatusTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.StatusTextBox.Multiline = true;
             this.StatusTextBox.Name = "StatusTextBox";
             this.StatusTextBox.ReadOnly = true;
             this.StatusTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.StatusTextBox.Size = new System.Drawing.Size(548, 148);
+            this.StatusTextBox.Size = new System.Drawing.Size(684, 184);
             this.StatusTextBox.TabIndex = 0;
             // 
             // ExportButton
             // 
             this.ExportButton.Enabled = false;
-            this.ExportButton.Location = new System.Drawing.Point(497, 309);
+            this.ExportButton.Location = new System.Drawing.Point(621, 386);
+            this.ExportButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ExportButton.Name = "ExportButton";
-            this.ExportButton.Size = new System.Drawing.Size(75, 40);
+            this.ExportButton.Size = new System.Drawing.Size(94, 50);
             this.ExportButton.TabIndex = 12;
             this.ExportButton.Text = "Export";
             this.ExportButton.UseVisualStyleBackColor = true;
@@ -222,35 +244,39 @@ namespace genshin_audio_exporter
             // 
             // OverallExportProgressBar
             // 
-            this.OverallExportProgressBar.Location = new System.Drawing.Point(12, 333);
+            this.OverallExportProgressBar.Location = new System.Drawing.Point(15, 416);
+            this.OverallExportProgressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OverallExportProgressBar.MarqueeAnimationSpeed = 1;
             this.OverallExportProgressBar.Name = "OverallExportProgressBar";
-            this.OverallExportProgressBar.Size = new System.Drawing.Size(479, 15);
+            this.OverallExportProgressBar.Size = new System.Drawing.Size(599, 19);
             this.OverallExportProgressBar.Step = 1;
             this.OverallExportProgressBar.TabIndex = 13;
-            this.ExportProgressToolTip.SetToolTip(this.OverallExportProgressBar, "Progress of the entire export operation.");
             // 
             // CurrentExportProgressBar
             // 
-            this.CurrentExportProgressBar.Location = new System.Drawing.Point(12, 310);
+            this.CurrentExportProgressBar.Location = new System.Drawing.Point(15, 388);
+            this.CurrentExportProgressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CurrentExportProgressBar.Name = "CurrentExportProgressBar";
-            this.CurrentExportProgressBar.Size = new System.Drawing.Size(479, 15);
+            this.CurrentExportProgressBar.Size = new System.Drawing.Size(599, 19);
             this.CurrentExportProgressBar.TabIndex = 14;
-            this.ExportProgressToolTip.SetToolTip(this.CurrentExportProgressBar, "Progress of the current export stage.");
             // 
-            // ExportProgressToolTip
+            // DragDropPCKFilesToolTip
             // 
-            this.ExportProgressToolTip.AutoPopDelay = 5000;
-            this.ExportProgressToolTip.InitialDelay = 0;
-            this.ExportProgressToolTip.ReshowDelay = 100;
-            this.ExportProgressToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ExportProgressToolTip.ToolTipTitle = "Information";
+            this.DragDropPCKFilesToolTip.AutoPopDelay = 5000;
+            this.DragDropPCKFilesToolTip.BackColor = System.Drawing.Color.White;
+            this.DragDropPCKFilesToolTip.InitialDelay = 0;
+            this.DragDropPCKFilesToolTip.ReshowDelay = 100;
+            this.DragDropPCKFilesToolTip.ShowAlways = true;
+            this.DragDropPCKFilesToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.DragDropPCKFilesToolTip.ToolTipTitle = "Selecting files";
+            this.DragDropPCKFilesToolTip.UseAnimation = false;
+            this.DragDropPCKFilesToolTip.UseFading = false;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(730, 451);
             this.Controls.Add(this.CurrentExportProgressBar);
             this.Controls.Add(this.OverallExportProgressBar);
             this.Controls.Add(this.ExportButton);
@@ -292,7 +318,7 @@ namespace genshin_audio_exporter
         private System.Windows.Forms.ProgressBar OverallExportProgressBar;
         internal System.Windows.Forms.TextBox StatusTextBox;
         private System.Windows.Forms.ProgressBar CurrentExportProgressBar;
-        private System.Windows.Forms.ToolTip ExportProgressToolTip;
+        private System.Windows.Forms.ToolTip DragDropPCKFilesToolTip;
     }
 }
 

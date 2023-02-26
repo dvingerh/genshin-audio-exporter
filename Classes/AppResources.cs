@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using SevenZipExtractor;
+using System.IO;
 using System.Reflection;
-using SevenZipExtractor;
 
 namespace genshin_audio_exporter
 {
