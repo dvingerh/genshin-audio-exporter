@@ -18,6 +18,7 @@ C:\Program Files\Genshin Impact\Genshin Impact Game\GenshinImpact_Data\Streaming
 3. Choose your preferred audio formats to export to.
 4. Click `Export` and wait for the program to finish exporting the audio files.
 
+###### Tip! You can also drag-and-drop files into the textbox next to `PCK files selected`.
 
 ### Screenshots (may be out of date)
 
